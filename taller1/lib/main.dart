@@ -25,20 +25,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String titulo = "Hola, Flutter";
+  String titulo = "La Orden Jedi";
+
+  // --- PALETA DE COLORES DEL LADO OSCURO ---
+  final Color sithBlack = const Color(0xFF050505); 
+  final Color sithRed = const Color(0xFFD50000); 
+  final Color empireGrey = const Color(0xFF1A1A1C); 
+  final Color textDim = const Color(0xFFB0B0B0); 
 
   void cambiarTitulo() {
     setState(() {
-      titulo = titulo == "Hola, Flutter" 
-          ? "¡Título cambiado!" 
-          : "Hola, Flutter";
+      titulo = titulo == "La Orden Jedi" 
+          ? "¡El Imperio domina!" 
+          : "La Orden Jedi";
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("Título actualizado"),
-        backgroundColor: Color(0xFF0f3460),
-        duration: Duration(seconds: 2),
+      SnackBar(
+        content: const Text("Orden 66 Ejecutada", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1.5)),
+        backgroundColor: sithRed, // SnackBar rojo sangre
+        duration: const Duration(seconds: 2),
       ),
     );
   }
@@ -46,24 +52,32 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, String>> items = [
-      {"image": "assets/anakinstar.jpg", "title": "Anakin", "subtitle": "Star Wars"},
+      {"image": "assets/anakinstar.jpg", "title": "Darth Vader/Anakin Skywalker", "subtitle": "Lord Sith"}, 
       {"image": "assets/ippo.jpg", "title": "Ippo", "subtitle": "Hajime no Ippo"},
-      {"image": "assets/vegetta.jpg", "title": "Vegeta", "subtitle": "Dragon Ball Z"},
+      {"image": "assets/vegetta.jpg", "title": "Vegetta", "subtitle": "Dragon Ball Z"}, 
     ];
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: sithBlack,
       appBar: AppBar(
         title: Text(
           titulo,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: sithRed,
             fontWeight: FontWeight.bold,
+            letterSpacing: 2.5, 
           ),
         ),
         centerTitle: true,
-        backgroundColor: const Color(0xFF6200EE),
+        backgroundColor: sithBlack, 
         elevation: 0,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1.0),
+          child: Container(
+            color: sithRed.withOpacity(0.3), 
+            height: 1.0,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -77,9 +91,9 @@ class _HomePageState extends State<HomePage> {
                 fit: BoxFit.cover, 
                 errorBuilder: (context, error, stackTrace) {
                   return Container(
-                    color: Colors.grey[300],
+                    color: empireGrey,
                     child: const Center(
-                      child: Text("Error cargando banner", style: TextStyle(color: Colors.grey)),
+                      child: Text("Transmisión interceptada por el Imperio", style: TextStyle(color: Colors.redAccent)),
                     ),
                   );
                 },
@@ -91,30 +105,32 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // 
                   Card(
-                    elevation: 4,
+                    elevation: 10,
+                    color: empireGrey, 
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
+                      side: BorderSide(color: sithRed.withOpacity(0.6), width: 1.5), 
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          const Text(
+                          Text(
                             "Juan Camilo Suarez Holguin",
                             style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF6200EE),
+                              color: Colors.white,
                             ),
                           ),
                           const SizedBox(height: 5),
-                          const Text(
-                            "230231027",
+                          Text(
+                            "230231027 - Aprendiz Sith", 
                             style: TextStyle(
                               fontSize: 16,
-                              color: Colors.grey,
+                              color: sithRed,
+                              fontStyle: FontStyle.italic,
                             ),
                           ),
                         ],
@@ -123,42 +139,50 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const SizedBox(height: 30),
                   
-                  // --- BOTÓN PARA CAMBIAR EL ESTADO ---
                   ElevatedButton(
                     onPressed: cambiarTitulo,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF6200EE),
+                      backgroundColor: sithRed, 
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 14),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(8), 
                       ),
-                      elevation: 3,
+                      elevation: 8,
+                      shadowColor: sithRed.withOpacity(0.8), 
                     ),
                     child: const Text(
-                      "Cambiar título",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      "Sucumbir al Lado Oscuro",
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, letterSpacing: 1.2),
                     ),
                   ),
                   const SizedBox(height: 30),
                   
+                  //  WIDGET ADICIONAL 1 
                   Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF3E5F5),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: const Color(0xFF6200EE), width: 1),
+                      color: sithBlack,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: sithRed, width: 2), 
+                      boxShadow: [
+                        BoxShadow(
+                          color: sithRed.withOpacity(0.15), 
+                          blurRadius: 15,
+                          spreadRadius: 2,
+                        )
+                      ]
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.star, color: Color(0xFF6200EE), size: 28),
-                        SizedBox(width: 12),
-                        Text(
-                          "¡Bienvenido a Flutter!",
+                        Icon(Icons.local_fire_department, color: sithRed, size: 30), 
+                        const SizedBox(width: 12),
+                        const Text(
+                          "Conoce el poder del Lado Oscuro",
                           style: TextStyle(
-                            color: Color(0xFF6200EE),
-                            fontSize: 16,
+                            color: Colors.white,
+                            fontSize: 15,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -167,27 +191,30 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const SizedBox(height: 30),
                   
-                  const Text(
+                  Text(
                     "Mis Personajes Favoritos",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF6200EE),
+                      color: sithRed,
+                      letterSpacing: 1.5,
                     ),
                   ),
                   const SizedBox(height: 12),
                   
+                  // WIDGET ADICIONAL 2
                   Card(
-                    elevation: 2,
+                    elevation: 4,
+                    color: empireGrey,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     child: ListView.separated(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: items.length, 
                       separatorBuilder: (context, index) => const Divider(
-                        color: Colors.grey,
+                        color: Colors.white12, 
                         indent: 16,
                         endIndent: 16,
                       ),
@@ -197,20 +224,20 @@ class _HomePageState extends State<HomePage> {
                             width: 50,
                             height: 50,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: const Color(0xFF6200EE), width: 1),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: sithRed, width: 1.5), 
                             ),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(6),
                               child: Image.asset(
                                 items[index]["image"] as String,
                                 fit: BoxFit.cover,
                                 errorBuilder: (context, error, stackTrace) {
                                   return Container(
-                                    color: Colors.grey[200],
+                                    color: sithBlack,
                                     child: const Icon(
-                                      Icons.person,
-                                      color: Colors.grey,
+                                      Icons.person_off,
+                                      color: Colors.white24,
                                       size: 30,
                                     ),
                                   );
@@ -223,10 +250,14 @@ class _HomePageState extends State<HomePage> {
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
+                              color: Colors.white, 
                             ),
                           ),
-                          subtitle: Text(items[index]["subtitle"] as String),
-                          trailing: const Icon(Icons.arrow_forward_ios, size: 14, color: Colors.grey),
+                          subtitle: Text(
+                            items[index]["subtitle"] as String,
+                            style: TextStyle(color: textDim), 
+                          ),
+                          trailing: Icon(Icons.arrow_forward_ios, size: 14, color: sithRed), // Flecha roja
                         );
                       },
                     ),
