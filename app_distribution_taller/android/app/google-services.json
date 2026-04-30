@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "801259139814",
+    "project_id": "app-distribution-taller",
+    "storage_bucket": "app-distribution-taller.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801259139814:android:60c9fe0e66aa3029b0c127",
+        "android_client_info": {
+          "package_name": "com.example.app_distribution_taller"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDevO4yk-z88p-oASdXaPsur7NdhHcAUnA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
