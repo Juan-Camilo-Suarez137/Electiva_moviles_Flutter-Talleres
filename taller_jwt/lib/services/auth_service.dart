@@ -10,12 +10,16 @@ class AuthService {
   Future<Map<String, dynamic>> login(String email, String password) async {
     try {
       final response = await http.post(
-        Uri.parse('$_baseUrl/login'),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
-          'email': email,
-          'password': password,
-        }),
+  Uri.parse('$_baseUrl/login'),
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json', // <--- AGREGA ESTA LÍNEA
+  },
+  body: jsonEncode({
+    'email': email,
+    'password': password,
+  }),
+
       );
 
       if (response.statusCode == 200) {
