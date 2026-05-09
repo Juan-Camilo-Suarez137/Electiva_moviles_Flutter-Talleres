@@ -1,4 +1,3 @@
-# app_distribution_taller
 
 # 📱 App Distribution - Flutter + Firebase
 
@@ -65,7 +64,5 @@ flutter build apk --release
 
 * Se subió la nueva versión a Firebase App Distribution.
 * Los testers recibieron una notificación de actualización.
-
-
 
 
